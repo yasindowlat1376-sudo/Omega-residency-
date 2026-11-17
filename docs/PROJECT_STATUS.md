@@ -1,56 +1,47 @@
 # Ω-RESIDENCY / Ω-PATH-STUDY — Project status
 
-**Snapshot:** 2026-11-17 (post PR #17)  
+**Snapshot:** 2026-11-18  
 **Repository:** `yasindowlat1376-sudo/Omega-residency-`  
-**Default branch:** `main`
+**Default branch:** `main`  
+**Latest main commit:** `0867b66189758a288da6081f9814e217d91c8850`
 
-## Latest delivery update
+## Latest delivery
 
-- PR #5 (General Pathology expansion) merged; verification run `44161766908` passed.
-- PR #6 (dependency audit visibility + Dependabot) merged; verification run `44162070672` passed.
-- Dependabot action updates merged: PRs #8, #10, #11, #12 and #13; their CI runs passed.
-- Production dependency update PR #14 merged; CI run `44162494338` passed.
-- Dependabot PR #17 merged after its full CI passed; Vite updated from `6.4.3` to `6.4.6` with compatible development dependency updates. Main CI run `44167111875` passed.
-- Major Vite 8 / TypeScript 7 proposal was not merged because the test pipeline exposed compatibility and lockfile issues; it was closed rather than bypassing CI.
-- Dependency remediation is tracked in [issue #7](https://github.com/yasindowlat1376-sudo/Omega-residency-/issues/7); high-severity npm advisories remain OPEN.
+- PR [#18](https://github.com/yasindowlat1376-sudo/Omega-residency-/pull/18) merged on 2026-11-17.
+- Added an interactive knowledge canvas, visual histology atlas integration, expanded evidence registry and modernization documentation.
+- Merge commit: `0867b66189758a288da6081f9814e217d91c8850`.
+- PR verification run [44169852520](https://github.com/yasindowlat1376-sudo/Omega-residency-/actions/runs/44169852520): **success** — install, dependency advisory summary, lint, strict typecheck, tests, static security scan and production build all passed.
+- Pages deployment run [44171471196](https://github.com/yasindowlat1376-sudo/Omega-residency-/actions/runs/44171471196): **success** — build, artifact upload, Pages configuration and deploy jobs all passed.
+- Expected app URL: https://yasindowlat1376-sudo.github.io/Omega-residency-/. The workflow reports successful deployment; a real-device browser smoke test remains outstanding.
 
-## Latest verified delivery
+## Application coverage
 
-- Pull request [#5](https://github.com/yasindowlat1376-sudo/Omega-residency-/pull/5) — merged.
-- Merge commit: `06da3c2ce8020726c0bf2efa6803b2752d11c062`.
-- GitHub Actions verification run: `44161766908` — **success**.
-- Verified steps: `npm ci`, lint, strict TypeScript typecheck, core tests, static security scan and Vite production build.
-
-This verifies the source and production web bundle for that commit. The latest deployment workflow build job passes, but the deploy job still fails at `Configure Pages` because the Pages site is not enabled/configured in repository settings. This does not establish clinical validation, official curriculum approval or native Android readiness.
-
-## Pathology learning coverage on main
-
-- 15 normal-histology lessons across major organ systems.
-- 8 General Pathology foundations: cell injury/adaptation/death; inflammation; repair/fibrosis; hemodynamic disorders/thrombosis/shock; neoplasia; immune-mediated injury; infectious patterns; molecular pathology/genetics.
-- 31 linked active-recall questions (15 normal-histology + 16 General Pathology).
-- Four-year PGY1–PGY4 developmental competency map.
-- 10 grossing orientation cards.
-- Educational microscopy and reasoning scaffold with FACT / INFERENCE / HYPOTHESIS / UNKNOWN.
-- Shift checklist, gross-description builder, educational case log and JSON export.
+- 15 normal-histology lessons and 8 General Pathology foundations.
+- 31 linked active-recall questions with explanations and progress tracking.
+- Four-year PGY1–PGY4 developmental competency map, explicitly not represented as the official IUMS curriculum.
+- 10 grossing orientation cards, shift checklist and structured gross-description builder.
+- Educational microscopy/reasoning scaffold with FACT / INFERENCE / HYPOTHESIS / UNKNOWN.
+- Educational case log and JSON export.
+- Visual Atlas with original labelled schematics (not diagnostic micrographs).
+- Knowledge Canvas MVP: draggable nodes, pan/zoom, searchable concepts, relationship edges, node detail/source panels and guided presentation path.
 - Local browser persistence; cloud synchronization is not established.
 
 ## Verification and release gates
 
-A non-blocking `npm audit --json` summary step is now part of CI so advisory identity, affected dependency paths, severity and fix availability are visible in the run log. Dependabot weekly updates are enabled for npm dependencies and GitHub Actions, restricted to semver minor/patch updates to avoid unreviewed major upgrades.
-
 | Area | Status | Evidence / limitation |
 |---|---|---|
-| Lint / typecheck / core tests | PASS | GitHub Actions run 44161766908 |
-| Production build | PASS | Vite build completed in run 44161766908 |
-| Static security scan | PASS | This checks configured repository patterns; it does not clear npm advisories |
-| npm dependency audit | OPEN | Four high-severity findings remain after PR #17; see issue #7. Current audit output still identifies `fdir`, `picomatch` (GHSA-fc5q-39xc-vjpf), `tinyglobby` and `vite`. Vite is now 6.4.6, but the transitive `picomatch` advisory remains unresolved. Do not force major upgrades or pin an unmerged upstream fork |
-| GitHub Pages | BLOCKED ON ONE-TIME ADMIN SETTING | Latest build job passes, but `Configure Pages` still returns 404 because the Pages site is not enabled/configured. Repository owner/admin must set Settings → Pages → Source = GitHub Actions, then rerun deploy workflow |
-| Android install | PWA design only | No native APK/AAB, signing or Play release |
-| Browser persistence | IMPLEMENTED / E2E PARTIAL | Local browser storage; cross-device sync and full recovery tests unverified |
+| Lint / typecheck / tests / production build | PASS | PR verification run 44169852520 |
+| Static security scan | PASS | Configured repository patterns only; does not clear dependency advisories |
+| GitHub Pages workflow | PASS | Run 44171471196; real-device/browser smoke test remains outstanding |
+| npm dependency audit | OPEN | Four high-severity findings were reported after PR #17; see [issue #7](https://github.com/yasindowlat1376-sudo/Omega-residency-/issues/7). Recheck current audit before any claim of remediation |
+| Android install | PWA | No native APK/AAB, signing or Play release |
+| Browser persistence | IMPLEMENTED / E2E PARTIAL | Local browser storage; cross-device sync and complete recovery tests unverified |
 | Clinical validation | NOT COMPLETED | Educational content requires faculty review and local SOP alignment |
 | Official IUMS curriculum | UNKNOWN | Obtain current primary IUMS / Ministry documents before asserting rotation durations, case quotas or promotion rules |
 | AI/RAG backend | PARTIAL / UNKNOWN | No live provider credential, proxy or evidence resolver is verified |
-| Image/slide library | NOT INCLUDED as a validated diagnostic dataset | Use licensed/public teaching collections and explicit source attribution |
+| Image/slide library | NOT A VALIDATED DIAGNOSTIC DATASET | Use licensed/public teaching collections with source attribution |
+
+A non-blocking npm audit summary is part of CI. Dependabot weekly updates are enabled for npm dependencies and GitHub Actions, restricted to semver minor/patch updates. Do not use `npm audit fix --force` or accept major toolchain changes without compatibility review.
 
 ## Non-negotiable safety and governance
 
@@ -61,13 +52,14 @@ A non-blocking `npm audit --json` summary step is now part of CI so advisory ide
 - International references (WHO/IARC, CAP, ICCR, RCPath, ACGME) are versioned and scope-specific; they are not automatically Iranian regulations.
 - Distinguish source facts from derived interpretation and retain uncertainty rather than silently filling missing data.
 
-## Remaining completion roadmap
+## Remaining roadmap
 
-1. Resolve the high-severity npm advisories tracked in issue #7; apply patched versions when available, use narrowly scoped overrides only when justified, and rerun CI.
-2. Verify GitHub Pages deployment and installability on a real Android device.
-3. Obtain official IUMS curriculum, rotation schedule, assessment and promotion documents; preserve source/date/version.
+1. Resolve high-severity npm advisories in issue #7 using compatible patched versions and full CI verification.
+2. Perform Android browser smoke test: install prompt, responsive layout, offline reload, export/import and persistence after restart.
+3. Obtain official IUMS curriculum, rotation schedule, assessment and promotion documents; preserve source/date/version and distinguish institutional policy from national policy.
 4. Expand system-based pathology, cytopathology, hematopathology, ancillary-test stewardship and image-based slide exercises using licensed sources.
-5. Add browser E2E tests for persistence, migration, export/import and offline behavior.
-6. Faculty review of all educational content and local workflow templates before operational clinical use.
+5. Upgrade Knowledge Canvas from MVP to durable graph workspace: persisted node positions, editable relationships, undo/redo, minimap, import/export and keyboard accessibility.
+6. Add browser E2E tests for persistence, migration, export/import and offline behavior.
+7. Faculty review of educational content and local workflow templates before operational clinical use.
 
-**Release rule:** A green CI run is software verification, not clinical validation, curriculum accreditation or production readiness.
+**Release rule:** a green CI run is software verification, not clinical validation, curriculum accreditation or production readiness.
