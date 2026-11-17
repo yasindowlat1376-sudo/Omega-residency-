@@ -1,6 +1,6 @@
 # Ω-RESIDENCY / Ω-PATH-STUDY — Project status
 
-**Snapshot:** 2026-11-17  
+**Snapshot:** 2026-11-17 (post PR #17)  
 **Repository:** `yasindowlat1376-sudo/Omega-residency-`  
 **Default branch:** `main`
 
@@ -10,6 +10,7 @@
 - PR #6 (dependency audit visibility + Dependabot) merged; verification run `44162070672` passed.
 - Dependabot action updates merged: PRs #8, #10, #11, #12 and #13; their CI runs passed.
 - Production dependency update PR #14 merged; CI run `44162494338` passed.
+- Dependabot PR #17 merged after its full CI passed; Vite updated from `6.4.3` to `6.4.6` with compatible development dependency updates. Main CI run `44167111875` passed.
 - Major Vite 8 / TypeScript 7 proposal was not merged because the test pipeline exposed compatibility and lockfile issues; it was closed rather than bypassing CI.
 - Dependency remediation is tracked in [issue #7](https://github.com/yasindowlat1376-sudo/Omega-residency-/issues/7); high-severity npm advisories remain OPEN.
 
@@ -20,7 +21,7 @@
 - GitHub Actions verification run: `44161766908` — **success**.
 - Verified steps: `npm ci`, lint, strict TypeScript typecheck, core tests, static security scan and Vite production build.
 
-This verifies the source and production web bundle for that commit. The latest deployment workflow build job passes, but the deploy job fails because Pages has not yet been enabled in repository settings. This does not establish clinical validation, official curriculum approval or native Android readiness.
+This verifies the source and production web bundle for that commit. The latest deployment workflow build job passes, but the deploy job still fails at `Configure Pages` because the Pages site is not enabled/configured in repository settings. This does not establish clinical validation, official curriculum approval or native Android readiness.
 
 ## Pathology learning coverage on main
 
@@ -42,8 +43,8 @@ A non-blocking `npm audit --json` summary step is now part of CI so advisory ide
 | Lint / typecheck / core tests | PASS | GitHub Actions run 44161766908 |
 | Production build | PASS | Vite build completed in run 44161766908 |
 | Static security scan | PASS | This checks configured repository patterns; it does not clear npm advisories |
-| npm dependency audit | OPEN | Five high-severity findings remain; see issue #7. `picomatch` GHSA-fc5q-39xc-vjpf has no patched release stated in the advisory as of 2026-11-17. `source-map-js` requires ≥1.2.2; Vite 6.4.3 requires a patched 6.4.4+ release. Do not force major upgrades |
-| GitHub Pages | BLOCKED ON ONE-TIME ADMIN SETTING | Build job passes, but GitHub Pages site creation returns 404 and the integration cannot create it. Repository owner/admin must set Settings → Pages → Source = GitHub Actions, then rerun deploy workflow |
+| npm dependency audit | OPEN | Four high-severity findings remain after PR #17; see issue #7. Current audit output still identifies `fdir`, `picomatch` (GHSA-fc5q-39xc-vjpf), `tinyglobby` and `vite`. Vite is now 6.4.6, but the transitive `picomatch` advisory remains unresolved. Do not force major upgrades or pin an unmerged upstream fork |
+| GitHub Pages | BLOCKED ON ONE-TIME ADMIN SETTING | Latest build job passes, but `Configure Pages` still returns 404 because the Pages site is not enabled/configured. Repository owner/admin must set Settings → Pages → Source = GitHub Actions, then rerun deploy workflow |
 | Android install | PWA design only | No native APK/AAB, signing or Play release |
 | Browser persistence | IMPLEMENTED / E2E PARTIAL | Local browser storage; cross-device sync and full recovery tests unverified |
 | Clinical validation | NOT COMPLETED | Educational content requires faculty review and local SOP alignment |
