@@ -3,7 +3,7 @@ Pathology residency learning, supervised workflow and professional development. 
 
 This is an integrated domain workbench, not a separate application core. It reuses Ω-RESIDENCY canonical state, persistence, audit and import/export. No parallel identity, task, memory or patient-record system.
 
-## Included MVP
+## Included application modules\nNormal-histology atlas, active-recall bank, four-year developmental competency map, organ-specific grossing orientation cards, external reference catalogue, shift checklist, gross/microscopy builders and de-identified educational case log.\n\n## Included MVP
 Pathology workspace navigation; shift checklist; gross description builder; microscopy observation/reasoning scaffold; differential and ancillary fields; epistemic-state selector; de-identified educational case log and JSON export; shared StudyState persistence and backup/restore.
 
 ## Non-negotiable boundaries
