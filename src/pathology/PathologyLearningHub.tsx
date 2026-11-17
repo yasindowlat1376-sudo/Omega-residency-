@@ -1,5 +1,5 @@
 import {useMemo,useState} from 'react';
-import {BookOpen,CheckCircle2,ChevronDown,ExternalLink,GraduationCap,Layers3,Search,Target} from 'lucide-react';
+import {BookOpen,CheckCircle2,ChevronDown,ExternalLink,Search,Target} from 'lucide-react';
 import type {PathologyState} from './types';
 import {curriculum,grossingTemplateIndex,histologyLessons,recallQuestions,referenceResources} from './learningContent';
 type Props={value:PathologyState;onChange:(s:PathologyState)=>void};
