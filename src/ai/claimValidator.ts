@@ -1,0 +1,3 @@
+export type SupportLevel='SUPPORTED'|'PARTIALLY_SUPPORTED'|'CONFLICTING'|'NO_ADEQUATE_EVIDENCE';
+export type Claim={claim:string;evidence_ids:string[];source_ids:string[];source_versions:string[];support_level:SupportLevel;confidence:number};
+export function validateClaim(claim:Claim):Claim&{abstain:boolean}{const abstain=claim.support_level==='NO_ADEQUATE_EVIDENCE'||claim.evidence_ids.length===0;return {...claim,abstain};}

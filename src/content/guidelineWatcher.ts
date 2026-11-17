@@ -1,0 +1,3 @@
+import type { GuidelineRecord, StudyState } from '../domain/types';
+import { audit } from '../infrastructure/audit';
+export function registerGuidelineUpdate(state:StudyState,next:GuidelineRecord):StudyState{ const prior=state.guidelineRecords.find(g=>g.id===next.id); const changed=!!prior&&(prior.version!==next.version||prior.updated_date!==next.updated_date); const nextState={...state,guidelineRecords:[...state.guidelineRecords.filter(g=>g.id!==next.id),{...next,status:(changed?'CHANGED':'CURRENT') as 'CHANGED'|'CURRENT'}]}; return changed?audit(nextState,'GUIDELINE_UPDATED',next.id,{from:prior,to:next}):nextState; }

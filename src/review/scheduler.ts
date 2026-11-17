@@ -1,0 +1,3 @@
+import type { Card } from '../content/synthetic';
+import { config } from '../infrastructure/config';
+export function scheduleReview(card:Card,quality:number,today=new Date()):Card{ const repetitions=quality<3?0:card.repetitions+1; const ease=Math.max(config.scheduler.minEase,card.ease+(.1-(5-quality)*(.08+(5-quality)*.02))); const interval=quality<3?config.scheduler.relearningDays:repetitions===1?config.scheduler.firstInterval:repetitions===2?config.scheduler.secondInterval:Math.max(1,Math.round(card.interval*ease)); const next=new Date(today); next.setDate(next.getDate()+interval); return {...card,repetitions,ease,interval,due:next.toISOString().slice(0,10)}; }

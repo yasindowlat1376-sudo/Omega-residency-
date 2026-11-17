@@ -1,0 +1,4 @@
+import fs from 'node:fs'; import path from 'node:path';
+const ignored=new Set(['node_modules','.git','dist']); const findings=[];
+function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(ignored.has(e.name))continue;const p=path.join(dir,e.name);if(e.isDirectory())walk(p);else{let s='';try{s=fs.readFileSync(p,'utf8')}catch{continue}if(/sk-[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}|BEGIN (RSA|EC|OPENSSH) PRIVATE KEY/.test(s))findings.push(p);}}}
+walk('.'); if(findings.length){console.error('SECRET_FINDINGS\n'+findings.join('\n'));process.exit(1)} console.log('SECURITY_SCAN_PASS no obvious static secrets found');

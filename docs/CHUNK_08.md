@@ -1,0 +1,3 @@
+# CHUNK 08 — PRODUCTION HARDENING + MOBILE + QA + RELEASE
+
+This repository implements the UI integration, persisted exam resume path, global search MVP, JSON/CSV data paths, security checks, CI, core smoke test and release documentation. Native Android artifacts remain blocked because the supplied prototype contains no Android project and no signing/build environment is available in this workspace.

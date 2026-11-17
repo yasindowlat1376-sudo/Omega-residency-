@@ -1,0 +1,2 @@
+export type AIJobStatus='QUEUED'|'RUNNING'|'COMPLETED'|'FAILED'|'RETRYING'|'CANCELLED';
+export type AIJob={job_id:string;operation:string;provider:string;model:string;prompt_id:string;prompt_version:string;input_hash:string;status:AIJobStatus;attempt_count:number;error?:string;created_at:string;completed_at?:string};

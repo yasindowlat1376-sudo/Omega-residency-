@@ -1,0 +1,2 @@
+import type { RetrievalProvider, RetrievalQuery, EvidenceChunk } from './RetrievalProvider';
+export class MockRetriever implements RetrievalProvider{async retrieve(_query:RetrievalQuery):Promise<EvidenceChunk[]>{return [];}}

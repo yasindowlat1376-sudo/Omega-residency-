@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.tmp-core-test/
+.env
+.env.*
+!.env.example
+*.local

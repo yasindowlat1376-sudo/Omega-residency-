@@ -1,0 +1,13 @@
+import type { StudyState } from '../domain/types';
+import { config } from '../infrastructure/config';
+export type Metric={name:string;value:number|null;sample_size:number;time_window:string;method:string;uncertainty:'LOW'|'MEDIUM'|'HIGH'|'INSUFFICIENT_DATA'};
+export function computeMetrics(state:StudyState):Metric[]{ const recent=state.events.slice(-config.analytics.recentAttempts); const correct=recent.filter(e=>{const r=state.exams.find(x=>x.exam_id===e.exam_id); return !r?false:true;}).length; const practiceRecent=recent.filter(e=>e.source==='practice'); const acc=practiceRecent.length?Math.round(practiceRecent.filter(e=>{const q=(globalThis as any).__omegaQuestions?.find?.((q:any)=>q.id===e.id);return q&&q.answer===e.choice;}).length/practiceRecent.length*100):null; return [
+ {name:'KNOWLEDGE',value:acc,sample_size:practiceRecent.length,time_window:'recent',method:'observed practice accuracy; requires loaded question bank',uncertainty:practiceRecent.length>=10?'LOW':'INSUFFICIENT_DATA'},
+ {name:'RETENTION',value:null,sample_size:state.reviews.length,time_window:'all',method:'reserved for longitudinal review outcomes',uncertainty:state.reviews.length>=20?'MEDIUM':'INSUFFICIENT_DATA'},
+ {name:'SPEED',value:null,sample_size:state.events.length,time_window:'all',method:'reserved for response-time capture',uncertainty:'INSUFFICIENT_DATA'},
+ {name:'EXAM_EXECUTION',value:state.exams.length?Math.round(state.exams.reduce((s,e)=>s+e.score,0)/state.exams.length):null,sample_size:state.exams.length,time_window:'all exams',method:'mean observed synthetic exam percentage',uncertainty:state.exams.length>=3?'MEDIUM':'INSUFFICIENT_DATA'},
+ {name:'BLUEPRINT_COVERAGE',value:null,sample_size:state.events.length,time_window:'all',method:'requires official blueprint mapping',uncertainty:'INSUFFICIENT_DATA'},
+ {name:'ERROR_RECURRENCE',value:null,sample_size:state.events.length,time_window:'all',method:'requires repeated-error normalization',uncertainty:'INSUFFICIENT_DATA'},
+ {name:'CONFIDENCE_CALIBRATION',value:null,sample_size:0,time_window:'all',method:'confidence capture not yet enabled',uncertainty:'INSUFFICIENT_DATA'}
+ ]; }
+export function streak(state:StudyState,today=new Date()):number{const days=new Set([...state.events.map(e=>e.date),...state.reviews.map(r=>r.date)]); const d=new Date(today); let s=d.toISOString().slice(0,10); if(!days.has(s)){d.setDate(d.getDate()-1);} let n=0; while(days.has(d.toISOString().slice(0,10))){n++;d.setDate(d.getDate()-1);} return n;}

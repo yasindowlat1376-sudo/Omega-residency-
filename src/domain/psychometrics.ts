@@ -1,0 +1,3 @@
+export type PsychometricStatus='ESTIMATED'|'INSUFFICIENT_DATA';
+export type Psychometrics={difficulty:number|null;discrimination:number|null;point_biserial:number|null;option_frequency:Record<string,number>;omission_rate:number|null;response_time:number|null;exposure:number;status:PsychometricStatus};
+export function insufficientPsychometrics():Psychometrics{return{difficulty:null,discrimination:null,point_biserial:null,option_frequency:{},omission_rate:null,response_time:null,exposure:0,status:'INSUFFICIENT_DATA'}}

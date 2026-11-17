@@ -1,0 +1,4 @@
+export type QuestionLifecycle='DRAFT'|'VALIDATION'|'SOURCE_CHECK'|'HUMAN_REVIEW'|'APPROVED'|'PUBLISHED'|'DEPRECATED'|'SUPERSEDED'|'DISPUTED';
+export type GeneratedQuestionRecord={id:string;lifecycle:QuestionLifecycle;synthetic:boolean;source_ids:string[];evidence_ids:string[];created_at:string;updated_at:string};
+export const QUESTION_PIPELINE=['BLUEPRINT','LEARNING_OBJECTIVE','SOURCE','EVIDENCE','QUESTION_BLUEPRINT','GENERATION','VALIDATION','SOURCE_CHECK','DUPLICATE_CHECK','REVIEW','PUBLISH'] as const;
+export function validateGeneratedQuestion(q:GeneratedQuestionRecord):{ok:boolean;reason?:string}{if(!q.id||!q.created_at)return{ok:false,reason:'missing identity/timestamp'};if(q.synthetic&&q.source_ids.some(id=>id.startsWith('OFFICIAL_')))return{ok:false,reason:'synthetic question cannot be relabeled as official'};return{ok:true};}
