@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
-import { BookOpen, ChevronLeft, ChevronRight, CircleHelp, ExternalLink, Focus, GitBranch, Image, Maximize2, Minus, Plus, Presentation, Search, ShieldCheck, X } from 'lucide-react';
+import type { PointerEvent } from 'react';
+import { BookOpen, ChevronLeft, ChevronRight, CircleHelp, ExternalLink, Focus, GitBranch, Image, Minus, Plus, Presentation, Search, ShieldCheck, X } from 'lucide-react';
 
 type Kind='system'|'organ'|'pattern'|'differential'|'test'|'source'|'image';
 type Node={id:string;title:string;subtitle:string;kind:Kind;x:number;y:number;facts:string[];source?:{label:string;url:string;status:string}};
@@ -30,8 +31,7 @@ export default function KnowledgeCanvas(){
  const pos=(n:Node)=>positions[n.id]??{x:n.x,y:n.y};
  const focus=(id:string)=>{const n=nodes.find(x=>x.id===id);if(!n)return;const p=pos(n);setSelected(id);setOffset({x:760-p.x*scale,y:470-p.y*scale})};
  const zoom=(d:number)=>setScale(s=>Math.max(.35,Math.min(1.5,s+d)));
- const point=(e:React.PointerEvent)=>{const rect=svg.current?.getBoundingClientRect();if(!rect)return{x:0,y:0};return{x:(e.clientX-rect.left)/scale-offset.x/scale,y:(e.clientY-rect.top)/scale-offset.y/scale}};
- const down=(e:React.PointerEvent,id:string|null)=>{if(present)return;const p=id?pos(nodes.find(n=>n.id===id)!):{x:0,y:0};drag.current={id,startX:e.clientX,startY:e.clientY,originX:p.x,originY:p.y,offsetX:offset.x,offsetY:offset.y};(e.currentTarget as Element).setPointerCapture(e.pointerId)};
+ const down=(e:PointerEvent,id:string|null)=>{if(present)return;const p=id?pos(nodes.find(n=>n.id===id)!):{x:0,y:0};drag.current={id,startX:e.clientX,startY:e.clientY,originX:p.x,originY:p.y,offsetX:offset.x,offsetY:offset.y};(e.currentTarget as Element).setPointerCapture(e.pointerId)};
  const move=(e:React.PointerEvent)=>{const d=drag.current;if(!d)return;const dx=(e.clientX-d.startX)/scale,dy=(e.clientY-d.startY)/scale;if(d.id)setPositions(v=>({...v,[d.id!]:{x:d.originX+dx,y:d.originY+dy}}));else setOffset({x:d.offsetX+e.clientX-d.startX,y:d.offsetY+e.clientY-d.startY})};
  const up=()=>{drag.current=null};
  const next=()=>{const i=steps.indexOf(selected);const id=steps[(i+1+steps.length)%steps.length];setStep(steps.indexOf(id));focus(id)};
