@@ -14,6 +14,7 @@ const modules: Module[] = [
   { id: 'learn', title: 'Learning Library', subtitle: 'درس و مسیر یادگیری', category: 'یادگیری', icon: BookOpen, accent: 'blue', description: 'Normal histology، General pathology و مرور ساختاریافته' },
   { id: 'questions', title: 'Question Bank', subtitle: 'تمرین و active recall', category: 'یادگیری', icon: GraduationCap, accent: 'cyan', description: 'سؤال‌ها، توضیحات و مرور خطاها' },
   { id: 'exam', title: 'Exam Simulator', subtitle: 'آزمون زمان‌دار', category: 'یادگیری', icon: Timer, accent: 'amber', description: 'آزمون شبیه‌ساز و تحلیل نتیجه' },
+  { id: 'review-queue', title: 'Review Queue', subtitle: 'صف مرور موارد و خطاها', category: 'یادگیری', icon: ClipboardCheck, accent: 'emerald', description: 'مرور موارد نیازمند بازبینی و تثبیت آموخته‌ها' },
   { id: 'cards', title: 'Spaced Repetition', subtitle: 'مرور هوشمند کارت‌ها', category: 'یادگیری', icon: Layers3, accent: 'emerald', description: 'صف مرور و بازیابی فعال' },
   { id: 'canvas', title: 'Knowledge Canvas', subtitle: 'نقشه مفهومی تعاملی', category: 'دانش', icon: BrainCircuit, accent: 'pink', description: 'اتصال ارگان، الگو، افتراق و تست' },
   { id: 'sources', title: 'Evidence Library', subtitle: 'کتابخانه منابع و citations', category: 'دانش', icon: FlaskConical, accent: 'teal', description: 'WHO/IARC، CAP، ICCR، RCPath و منابع آموزشی' },
