@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // Both plugins are required: Tailwind v4 only compiles through its Vite
 // plugin — removing tailwindcss() leaves the app silently unstyled.
+const isPagesBuild = process.env.GITHUB_ACTIONS === 'true';
+
 export default defineConfig({
+  base: isPagesBuild ? '/Omega-residency-/' : '/',
   plugins: [react(), tailwindcss()],
 });
