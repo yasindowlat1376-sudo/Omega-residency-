@@ -1,10 +1,32 @@
 # Ω-PATH-STUDY
-Pathology residency learning, supervised workflow and professional development. Parent: Ω-META → Ω-RESIDENCY. Execution fabric: Ω-CIF. Architecture index baseline 1.1.0 (2026-11-15).
 
-This is an integrated domain workbench, not a separate application core. It reuses Ω-RESIDENCY canonical state, persistence, audit and import/export. No parallel identity, task, memory or patient-record system.
+Integrated pathology-residency learning and supervised workflow layer inside Ω-RESIDENCY.
 
-## Included application modules\nNormal-histology atlas, active-recall bank, four-year developmental competency map, organ-specific grossing orientation cards, external reference catalogue, shift checklist, gross/microscopy builders and de-identified educational case log.\n\n## Included MVP
-Pathology workspace navigation; shift checklist; gross description builder; microscopy observation/reasoning scaffold; differential and ancillary fields; epistemic-state selector; de-identified educational case log and JSON export; shared StudyState persistence and backup/restore.
+## Current learning modules
 
-## Non-negotiable boundaries
-Epistemic state: FACT | INFERENCE | HYPOTHESIS | UNKNOWN. Preserve source state separately from derived state and retain provenance/version. Never store patient name, national identifier, DOB, phone, address, accession/barcode or identifiable image. Institutional LIS remains patient-record system of record. This UI does not autonomously diagnose, issue final reports, stage tumours or sign out. IUMS local rotation calendar, SOPs, call rules, case minimums and assessments remain UNKNOWN until verified. CAP, ICCR, WHO/IARC, RCPath, ACGME and ISO are scope-limited references, not automatically Iranian regulations.
+- Normal histology atlas: 15 organ-system lessons.
+- General Pathology: 8 foundation units.
+- Active recall: 31 questions after completion-branch merge.
+- PGY1–PGY4 developmental competency map (not the official IUMS curriculum).
+- Grossing orientation: 10 specimen-family cards.
+- Microscope workflow: low-power architecture → intermediate pattern → high-power cytology → differential → ancillary question.
+- Shift checklist, gross-description builder, microscopy reasoning scaffold and de-identified educational case log.
+
+## Epistemic discipline
+
+- **FACT:** directly observed or source-verified.
+- **INFERENCE:** conclusion supported by stated findings.
+- **HYPOTHESIS:** plausible explanation requiring discrimination.
+- **UNKNOWN:** not established; never silently convert to false or zero.
+
+Separate specimen observations from interpretation and final diagnosis. Preserve source, version, date and limitations when adding institutional guidance.
+
+## Clinical and privacy boundaries
+
+No patient identifiers, accession/barcode, contact details or identifiable images. The case log is educational only and not a clinical record. This application is not an LIS, does not issue final diagnoses or sign out cases, and does not replace responsible pathologist supervision or local SOPs.
+
+## Curriculum source state
+
+The four-year map is a developmental scaffold. IUMS rotation lengths, service allocation, case minimums, call rules, examination blueprint and promotion criteria remain **UNKNOWN** until current official primary documents are obtained and recorded.
+
+WHO/IARC, CAP, ICCR, RCPath and ACGME materials are scope- and version-specific references, not automatic substitutes for Iranian institutional policy.
