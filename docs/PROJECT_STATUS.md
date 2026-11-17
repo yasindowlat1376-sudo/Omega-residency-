@@ -4,6 +4,12 @@
 **Repository:** `yasindowlat1376-sudo/Omega-residency-`  
 **Default branch:** `main`
 
+## Latest delivery update
+
+- PR #5 (General Pathology expansion) merged; verification run `44161766908` passed.
+- PR #6 (dependency audit visibility + Dependabot) merged; verification run `44162070672` passed.
+- Dependency remediation is tracked in [issue #7](https://github.com/yasindowlat1376-sudo/Omega-residency-/issues/7); five high-severity npm advisories remain OPEN.
+
 ## Latest verified delivery
 
 - Pull request [#5](https://github.com/yasindowlat1376-sudo/Omega-residency-/pull/5) — merged.
@@ -53,7 +59,7 @@ A non-blocking `npm audit --json` summary step is being added to CI so advisory 
 
 ## Remaining completion roadmap
 
-1. Identify the exact five high-severity npm advisories and vulnerable dependency paths; update only compatible safe versions and rerun CI.
+1. Resolve the five high-severity npm advisories tracked in issue #7; update only compatible safe versions and rerun CI.
 2. Verify GitHub Pages deployment and installability on a real Android device.
 3. Obtain official IUMS curriculum, rotation schedule, assessment and promotion documents; preserve source/date/version.
 4. Expand system-based pathology, cytopathology, hematopathology, ancillary-test stewardship and image-based slide exercises using licensed sources.
