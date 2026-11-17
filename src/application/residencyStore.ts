@@ -6,8 +6,9 @@ import { validateState } from '../domain/validation';
 import type { StudyState } from '../domain/types';
 import { initialCards } from '../content/synthetic';
 import { guidelineSeed } from '../content/sourceRegistry';
+import { createInitialPathologyState } from '../pathology/types';
 
-export const defaultState:StudyState={schema_version:CURRENT_SCHEMA_VERSION,events:[],reviews:[],bookmarks:[],exams:[],cards:initialCards,name:'کاربر مهمان',target:'آزمون دستیاری ۱۴۰۶',examDate:'2027-05-01',reminderEnabled:false,reminderTime:'20:00',activeExam:null,auditEvents:[],invalidRecords:[],guidelineRecords:guidelineSeed};
+export const defaultState:StudyState={schema_version:CURRENT_SCHEMA_VERSION,events:[],reviews:[],bookmarks:[],exams:[],cards:initialCards,name:'کاربر مهمان',target:'آزمون دستیاری ۱۴۰۶',examDate:'2027-05-01',reminderEnabled:false,reminderTime:'20:00',activeExam:null,auditEvents:[],invalidRecords:[],guidelineRecords:guidelineSeed,pathology:createInitialPathologyState()};
 const adapter=new LocalStorageAdapter<StudyState>('omega-residency-state-v2',s=>s.schema_version);
 
 export function hydrateState():StudyState{ try { const raw=localStorage.getItem('omega-residency-state-v2'); if(raw){const parsed=JSON.parse(raw);const {state,issues}=validateState(parsed);return issues.length?{...state,invalidRecords:[...state.invalidRecords,...issues.map(i=>({...i,detected_at:new Date().toISOString()}))]}:state;} const legacy=localStorage.getItem('rc-quality-v1')||localStorage.getItem('rc-cards'); return legacy?migrateLegacyStorage():defaultState; } catch { return defaultState; } }
