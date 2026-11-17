@@ -49,6 +49,10 @@ VITE_LLM_PROVIDER=openai|anthropic|gemini|local|mock
 
 Never ship vendor API credentials inside the client bundle.
 
+## Pathology residency package — Ω-PATH-STUDY
+
+A pathology-specific workspace is being integrated as a domain package, reusing the canonical residency state and persistence. Current feature branch: shift checklist, gross description builder, microscopy reasoning scaffold, de-identified educational case log and on-call documentation. See `docs/pathology/` for the module index, architecture, curriculum, reference policy and safety boundaries. The feature branch is not yet CI-verified or merged.
+
 ## Release status
 
 The repository is not marked production-ready merely because the UI runs. See `docs/PROJECT_STATUS.md` and `docs/RELEASE_CHECKLIST.md` for the exact current gate state.
