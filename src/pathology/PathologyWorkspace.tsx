@@ -1,4 +1,4 @@
-import {useMemo,useState} from 'react';
+import {useEffect,useMemo,useState} from 'react';
 import {AlertTriangle,BookOpen,ClipboardList,Copy,FileText,Image,Microscope,Plus,Save,Scissors,Trash2} from 'lucide-react';
 import PathologyLearningHub from './PathologyLearningHub';
 import VisualAtlas from './VisualAtlas';
@@ -9,7 +9,8 @@ const panel='rounded-3xl border border-[#e1e6f0] bg-white p-5 shadow-sm sm:p-6',
 function Field(p:{title:string;value:string;onChange:(v:string)=>void;multi?:boolean}){return <label className={label}>{p.title}{p.multi?<textarea rows={3} value={p.value} onChange={e=>p.onChange(e.target.value)} className={input}/>:<input value={p.value} onChange={e=>p.onChange(e.target.value)} className={input}/>}</label>}
 function copyText(t:string,notify:(s:string)=>void){if(!t){notify('متنی برای کپی وجود ندارد.');return}void navigator.clipboard?.writeText(t).then(()=>notify('متن کپی شد.')).catch(()=>notify('کپی در این محیط در دسترس نیست.'))}
 const groups:{id:ShiftChecklistItem['group'];title:string}[]=[{id:'START',title:'شروع شیفت'},{id:'SPECIMEN',title:'دریافت و تریاژ نمونه'},{id:'HANDOFF',title:'تحویل شیفت'}];
-export default function PathologyWorkspace({value,onChange,notify}:Props){const[tab,setTab]=useState<'shift'|'gross'|'micro'|'cases'|'learning'|'atlas'>('learning'),d=value.draft,patch=(p:Partial<PathologyCase>)=>onChange(updateDraft(value,p)),gross=useMemo(()=>buildGrossDescription(d),[d]),micro=useMemo(()=>buildMicroscopyDescription(d),[d]),done=value.shiftChecklist.filter(x=>x.checked).length;
+export default function PathologyWorkspace({value,onChange,notify}:Props){const[tab,setTab]=useState<'shift'|'gross'|'micro'|'cases'|'learning'|'atlas'>(()=>{try{const saved=localStorage.getItem('omega-pathology-workspace-tab');return (['shift','gross','micro','cases','learning','atlas'].includes(saved??'')?saved:'learning') as 'shift'|'gross'|'micro'|'cases'|'learning'|'atlas'}catch{return 'learning'}}),d=value.draft,patch=(p:Partial<PathologyCase>)=>onChange(updateDraft(value,p)),gross=useMemo(()=>buildGrossDescription(d),[d]),micro=useMemo(()=>buildMicroscopyDescription(d),[d]),done=value.shiftChecklist.filter(x=>x.checked).length;
+useEffect(()=>{try{localStorage.setItem('omega-pathology-workspace-tab',tab)}catch{/* Workspace preference is optional when storage is unavailable. */}},[tab]);
 const save=()=>{if(!d.organ.trim()&&!d.specimenType.trim()&&!d.localCaseCode.trim()){notify('حداقل نوع نمونه یا ارگان را وارد کنید.');return}onChange(saveDraft(value));notify('مورد آموزشی ذخیره شد؛ پیش از استفاده با SOP و مسئول مربوط تطبیق دهید.')};
 const exportCases=()=>{const blob=new Blob([JSON.stringify({schemaVersion:value.schemaVersion,cases:value.cases},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='omega-pathology-learning-log.json';a.click();URL.revokeObjectURL(url)};
 const nav=[['shift','چک‌لیست کشیک',ClipboardList],['gross','ماکروسکوپی',Scissors],['micro','میکروسکوپی',Microscope],['cases','دفتر موارد',FileText],['learning','دانشنامه و آموزش',BookOpen],['atlas','اطلس تصویری',Microscope]] as const;
