@@ -1,0 +1,21 @@
+{
+  "name": "Ω-PATH-STUDY | Pathology Residency",
+  "short_name": "Ω-PATH",
+  "description": "Offline-capable pathology residency learning and workflow companion",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/Omega-residency-/",
+  "scope": "/Omega-residency-/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3f5fa",
+  "theme_color": "#354fb1",
+  "icons": [
+    {
+      "src": "/Omega-residency-/icons/omega.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
