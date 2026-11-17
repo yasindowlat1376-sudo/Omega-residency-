@@ -9,3 +9,26 @@ button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 button:disabled { cursor: not-allowed; }
 button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #a7b5f1; outline-offset: 2px; }
 ::selection { background: #dce3fc; color: #182643; }
+
+/* Ω launcher / mobile workbench refinements */
+:root { color-scheme: light; }
+html { scroll-padding-top: 5.5rem; }
+body { padding-bottom: env(safe-area-inset-bottom); }
+button, a, input, select, textarea { touch-action: manipulation; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid #9aaaf4;
+  outline-offset: 3px;
+}
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 180ms; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (max-width: 640px) {
+  body { line-height: 1.65; }
+  input, select, textarea { font-size: 16px; }
+}
