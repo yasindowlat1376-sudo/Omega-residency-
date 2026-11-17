@@ -1,2 +1,2 @@
-interface ImportMetaEnv { readonly VITE_PLATFORM_SERVICES_URL?: string; readonly VITE_PLATFORM_SERVICE_TOKEN?: string; readonly VITE_LLM_PROVIDER?: string; }
+interface ImportMetaEnv { readonly VITE_PLATFORM_SERVICES_URL?: string; readonly VITE_PLATFORM_SERVICE_TOKEN?: string; readonly VITE_LLM_PROVIDER?: string; readonly PROD: boolean; readonly BASE_URL: string; }
 interface ImportMeta { readonly env: ImportMetaEnv }
