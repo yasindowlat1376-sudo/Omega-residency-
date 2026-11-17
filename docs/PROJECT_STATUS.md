@@ -2,39 +2,43 @@
 
 **Snapshot:** 2026-11-17  
 **Repository:** `yasindowlat1376-sudo/Omega-residency-`  
-**Default branch:** `main`  
-**Active completion branch:** `feature/omega-path-study-core-pathology`
+**Default branch:** `main`
 
-## Verified repository state
+## Latest verified delivery
 
-The main branch contains the Ω-RESIDENCY application and an integrated pathology workspace. The pathology learning hub includes a normal-histology atlas, a four-year developmental competency map, grossing orientation cards, active recall, references, shift checklist, gross-description builder, microscopy/reasoning scaffold and de-identified educational case log.
+- Pull request [#5](https://github.com/yasindowlat1376-sudo/Omega-residency-/pull/5) — merged.
+- Merge commit: `06da3c2ce8020726c0bf2efa6803b2752d11c062`.
+- GitHub Actions verification run: `44161766908` — **success**.
+- Verified steps: `npm ci`, lint, strict TypeScript typecheck, core tests, static security scan and Vite production build.
 
-A completion branch is adding the missing General Pathology foundation layer and tightening content coverage tests. Do not treat unmerged branch work as part of the production release until its PR is merged and CI passes.
+This verifies the source and production web bundle for that commit. It does not establish clinical validation, official curriculum approval, native Android readiness or successful Pages publication.
 
-## Pathology learning coverage
+## Pathology learning coverage on main
 
 - 15 normal-histology lessons across major organ systems.
 - 8 General Pathology foundations: cell injury/adaptation/death; inflammation; repair/fibrosis; hemodynamic disorders/thrombosis/shock; neoplasia; immune-mediated injury; infectious patterns; molecular pathology/genetics.
-- 31 active-recall questions after the completion branch is merged.
+- 31 linked active-recall questions (15 normal-histology + 16 General Pathology).
 - Four-year PGY1–PGY4 developmental competency map.
 - 10 grossing orientation cards.
 - Educational microscopy and reasoning scaffold with FACT / INFERENCE / HYPOTHESIS / UNKNOWN.
-- Local browser persistence and JSON export; no cloud synchronization is currently established.
+- Shift checklist, gross-description builder, educational case log and JSON export.
+- Local browser persistence; cloud synchronization is not established.
 
 ## Verification and release gates
 
 | Area | Status | Evidence / limitation |
 |---|---|---|
-| TypeScript / lint / core tests | Previously passed on an earlier verified commit; rerun required for current branch | Do not extrapolate old CI to new commits |
-| Production build | Previously passed on an earlier verified commit; rerun required | Web bundle only |
-| GitHub Pages | Configured in `.github/workflows/deploy-pages.yml`; live URL not independently verified | Treat publication as UNKNOWN until a successful deployment run and HTTP/device check |
+| Lint / typecheck / core tests | PASS | GitHub Actions run 44161766908 |
+| Production build | PASS | Vite build completed in run 44161766908 |
+| Static security scan | PASS | This checks configured repository patterns; it does not clear npm advisories |
+| npm dependency audit | OPEN | `npm ci` reported 5 high-severity vulnerabilities; exact advisory paths and remediation remain to be reviewed |
+| GitHub Pages | CONFIGURED / DEPLOYMENT UNVERIFIED | Workflow exists; live URL and deployment environment not independently confirmed |
 | Android install | PWA design only | No native APK/AAB, signing or Play release |
-| Browser persistence | Implemented using local browser storage | Cross-device sync and full E2E recovery tests remain unverified |
-| Clinical validation | Not completed | Educational content requires faculty review and local SOP alignment |
+| Browser persistence | IMPLEMENTED / E2E PARTIAL | Local browser storage; cross-device sync and full recovery tests unverified |
+| Clinical validation | NOT COMPLETED | Educational content requires faculty review and local SOP alignment |
 | Official IUMS curriculum | UNKNOWN | Obtain current primary IUMS / Ministry documents before asserting rotation durations, case quotas or promotion rules |
-| Dependency security | OPEN | Earlier install reported 5 high-severity npm advisories; identify exact advisories and remediate without blind force upgrades |
 | AI/RAG backend | PARTIAL / UNKNOWN | No live provider credential, proxy or evidence resolver is verified |
-| Image/slide library | NOT INCLUDED as a validated diagnostic dataset | Use licensed/public teaching collections and explicit source attribution; no patient-identifiable material |
+| Image/slide library | NOT INCLUDED as a validated diagnostic dataset | Use licensed/public teaching collections and explicit source attribution |
 
 ## Non-negotiable safety and governance
 
@@ -47,12 +51,11 @@ A completion branch is adding the missing General Pathology foundation layer and
 
 ## Remaining completion roadmap
 
-1. Merge and verify the General Pathology content expansion.
-2. Inspect npm audit output, identify vulnerable dependency paths and update only compatible safe versions; rerun CI.
-3. Verify GitHub Pages deployment and installability on a real Android device.
-4. Obtain official IUMS curriculum, rotation schedule, assessment and promotion documents; preserve source/date/version.
-5. Expand system-based pathology, cytopathology, hematopathology, ancillary-test stewardship and image-based slide exercises using licensed sources.
-6. Add browser E2E tests for persistence, migration, export/import and offline behavior.
-7. Faculty review of all educational content and local workflow templates before operational clinical use.
+1. Identify the exact five high-severity npm advisories and vulnerable dependency paths; update only compatible safe versions and rerun CI.
+2. Verify GitHub Pages deployment and installability on a real Android device.
+3. Obtain official IUMS curriculum, rotation schedule, assessment and promotion documents; preserve source/date/version.
+4. Expand system-based pathology, cytopathology, hematopathology, ancillary-test stewardship and image-based slide exercises using licensed sources.
+5. Add browser E2E tests for persistence, migration, export/import and offline behavior.
+6. Faculty review of all educational content and local workflow templates before operational clinical use.
 
 **Release rule:** A green CI run is software verification, not clinical validation, curriculum accreditation or production readiness.
