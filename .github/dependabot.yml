@@ -5,6 +5,11 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    allow:
+      - dependency-type: all
+        update-types:
+          - version-update:semver-patch
+          - version-update:semver-minor
     groups:
       production-dependencies:
         dependency-type: production
@@ -15,3 +20,8 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    allow:
+      - dependency-type: all
+        update-types:
+          - version-update:semver-patch
+          - version-update:semver-minor
