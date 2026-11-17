@@ -1,0 +1,2 @@
+import type { Claim } from '../ai/claimValidator';
+export function ensureTraceableClaim(claim:Claim){if(claim.support_level==='NO_ADEQUATE_EVIDENCE'||!claim.evidence_ids.length)return {...claim,abstain:true};return {...claim,abstain:false};}

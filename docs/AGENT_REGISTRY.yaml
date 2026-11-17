@@ -1,0 +1,21 @@
+version: "1.0.0"
+project: "Ω-RESIDENCY"
+agents:
+  - id: AGENT-SOURCE-SCOUT
+    role: "Official source + Telegram discovery"
+    authority: "discovery_only"
+  - id: AGENT-PROVENANCE
+    role: "Source/version/evidence normalization"
+    authority: "metadata_only"
+  - id: AGENT-QBANK-QA
+    role: "Question schema, source check, duplicate check"
+    authority: "validation_only"
+  - id: AGENT-LEARNING
+    role: "Attempt, error, review and study-plan analytics"
+    authority: "derived_state"
+  - id: AGENT-GUIDELINE-WATCHER
+    role: "Version diff and recheck queue"
+    authority: "watcher_only"
+  - id: AGENT-RELEASE-AUDITOR
+    role: "Tests, security, build and release gate"
+    authority: "audit_only"

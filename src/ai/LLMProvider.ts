@@ -1,0 +1,3 @@
+export type LLMRequest={prompt_id:string;prompt_version:string;input:unknown;model?:string;maxTokens?:number};
+export type LLMResponse={text:string;provider:string;model:string;input_hash:string;metadata:Record<string,unknown>};
+export interface LLMProvider{generate(request:LLMRequest):Promise<LLMResponse>;structured_generate<T>(request:LLMRequest):Promise<T>;classify(request:LLMRequest):Promise<string>;extract<T>(request:LLMRequest):Promise<T>;review(request:LLMRequest):Promise<{approved:boolean;issues:string[]}>;}

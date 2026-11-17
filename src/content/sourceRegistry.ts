@@ -1,0 +1,16 @@
+import type { SourceRecord, GuidelineRecord } from '../domain/types';
+export const sourceRegistry:SourceRecord[]=[
+{id:'IR-SANJESHP',name:'مرکز سنجش آموزش پزشکی',source_type:'PRIMARY_AUTHORITY',url:'https://sanjeshp.ir/',status:'VERIFIED',jurisdiction:'Iran',topics:['دستیاری','دفترچه','کلید','نتایج','انتخاب رشته'],provenance_note:'مرجع اصلی اطلاع‌رسانی و اجرای آزمون؛ هر نسخه سالانه باید از اطلاعیه/دفترچه رسمی ثبت شود.'},
+{id:'IR-DME',name:'معاونت آموزشی وزارت بهداشت',source_type:'PRIMARY_AUTHORITY',url:'https://dme.behdasht.gov.ir/',status:'VERIFIED',jurisdiction:'Iran',topics:['مصوبات','آیین‌نامه','آموزش پزشکی'],provenance_note:'مرجع مقررات و ابلاغیه‌های آموزشی؛ از خلاصه‌سایت‌ها مهم‌تر است.'},
+{id:'IUMS-MED-EXAMS',name:'دانشکده پزشکی دانشگاه علوم پزشکی اصفهان — آزمون‌های معاونت آموزش پزشکی عمومی',source_type:'INSTITUTIONAL_MIRROR',url:'https://med.mui.ac.ir/fa/آزمون-های-معاونت-آموزش-پزشکی-عمومی',status:'VERIFIED',jurisdiction:'Iran',topics:['منابع دوره 54','منابع آزمون'],provenance_note:'صفحه دانشگاهی که رکورد «منابع پنجاه و چهارمین دوره» را فهرست می‌کند؛ خود فایل/اعلام رسمی باید در مرجع اصلی نیز تطبیق داده شود.'},
+{id:'TELEGRAM-RESIDENCY-PLUS',name:'رزیدنتی پلاس',source_type:'TELEGRAM',url:'https://t.me/residency_plus',status:'DISCOVERY_ONLY',jurisdiction:'Iran',topics:['اخبار دستیاری','منابع 1406','برنامه مطالعه'],provenance_note:'کانال ثانویه برای کشف تغییرات/اخبار؛ ادعاها باید با مرجع رسمی تطبیق شوند.'},
+{id:'TELEGRAM-MEDICCENTER',name:'مدیک سنتر',source_type:'TELEGRAM',url:'https://t.me/mediccenter_residenti',status:'DISCOVERY_ONLY',jurisdiction:'Iran',topics:['دستیاری 1406','تغییر منابع','قوانین'],provenance_note:'کانال ثانویه/مشاوره‌ای؛ برای discovery و signal monitoring، نه source of truth.'},
+{id:'TELEGRAM-MEDICAL-RESIDENT',name:'رزیدنت نیوز',source_type:'TELEGRAM',url:'https://t.me/medical_resident',status:'DISCOVERY_ONLY',jurisdiction:'Iran',topics:['اخبار رزیدنتی','انتخاب رشته'],provenance_note:'کانال ثانویه؛ provenance هر ادعا باید به اطلاعیه اصلی برگردد.'},
+{id:'TELEGRAM-MAHAN',name:'ماهان طب',source_type:'TELEGRAM',url:'https://t.me/mahanmedicine',status:'DISCOVERY_ONLY',jurisdiction:'Iran',topics:['تست','منابع','تحلیل سوال'],provenance_note:'منبع آموزشی/تجاری؛ برای مقایسه و discovery، نه تعیین رسمی قواعد آزمون.'},
+{id:'SECONDARY-DOCTORABAD-54',name:'دکترآباد — منابع دوره 54',source_type:'SECONDARY',url:'https://doctorabad.com/mag/medical-residency-exam-resources-54/',status:'NEEDS_REVIEW',jurisdiction:'Iran',topics:['منابع دوره 54','رفرنس‌ها'],provenance_note:'خلاصه ثانویه‌ای که فهرست منابع دوره 54 را ارائه می‌کند؛ نسخه رسمی باید برای هر عنوان و edition ثبت شود.'}
+];
+export const guidelineSeed:GuidelineRecord[]=[
+{id:'G-ESC-ACS-2023',source:'ESC',version:'2023',specialty:'داخلی',topic:'ACS',last_checked:'2026-09-27',next_check:'2026-12-27',status:'UNKNOWN'},
+{id:'G-KDIGO-AKI-2012',source:'KDIGO',version:'2012',specialty:'داخلی',topic:'AKI',last_checked:'2026-09-27',next_check:'2027-03-27',status:'UNKNOWN'},
+{id:'G-AHA-STROKE-2019',source:'AHA/ASA',version:'2019',specialty:'نورولوژی',topic:'Acute ischemic stroke',last_checked:'2026-09-27',next_check:'2026-12-27',status:'UNKNOWN'}
+];

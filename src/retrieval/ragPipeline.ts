@@ -1,0 +1,3 @@
+import type { RetrievalProvider, RetrievalQuery, EvidenceChunk } from './RetrievalProvider';
+export type ClaimValidation={claim:string;evidence_ids:string[];source_ids:string[];source_versions:string[];support_level:'SUPPORTED'|'PARTIALLY_SUPPORTED'|'CONFLICTING'|'NO_ADEQUATE_EVIDENCE';confidence:number;abstain:boolean};
+export async function runRag(provider:RetrievalProvider,input:RetrievalQuery){ const evidence:EvidenceChunk[]=await provider.retrieve(input); const grouped=evidence.reduce<Record<string,EvidenceChunk[]>>((m,e)=>((m[e.source_id]??=[]).push(e),m),{}); return {query:input.query,evidence,groups:grouped,claims:[] as ClaimValidation[],pipeline:['QUERY','UNDERSTAND','FILTER','RETRIEVE','FUSE','RERANK','GROUP_EVIDENCE','GENERATE','VALIDATE','CITE']}; }

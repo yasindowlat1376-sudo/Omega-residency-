@@ -1,0 +1,12 @@
+import type { Question } from '../content/synthetic';
+import type { StudyState } from '../domain/types';
+export type Metric={name:string;value:number|null;sample_size:number;time_window:string;method:string;uncertainty:'LOW'|'MEDIUM'|'HIGH'|'INSUFFICIENT_DATA'};
+export function computeMetrics(state:StudyState,questions:Question[]):Metric[]{ const recent=state.events.slice(-40); const practice=recent.filter(e=>e.source==='practice'); const correct=practice.filter(e=>questions.find(q=>q.id===e.id)?.answer===e.choice).length; const acc=practice.length?Math.round(correct/practice.length*100):null; return [
+{name:'KNOWLEDGE',value:acc,sample_size:practice.length,time_window:'آخرین ۴۰ تلاش',method:'نرخ پاسخ صحیح مشاهده‌شده در practice',uncertainty:practice.length>=10?'LOW':'INSUFFICIENT_DATA'},
+{name:'RETENTION',value:null,sample_size:state.reviews.length,time_window:'کل',method:'نیازمند دادهٔ longitudinal کافی',uncertainty:state.reviews.length>=20?'MEDIUM':'INSUFFICIENT_DATA'},
+{name:'SPEED',value:null,sample_size:0,time_window:'کل',method:'response-time هنوز ثبت نمی‌شود',uncertainty:'INSUFFICIENT_DATA'},
+{name:'EXAM_EXECUTION',value:state.exams.length?Math.round(state.exams.reduce((s,e)=>s+e.score,0)/state.exams.length):null,sample_size:state.exams.length,time_window:'کل آزمون‌ها',method:'میانگین درصد مشاهده‌شدهٔ آزمون‌های synthetic',uncertainty:state.exams.length>=3?'MEDIUM':'INSUFFICIENT_DATA'},
+{name:'BLUEPRINT_COVERAGE',value:null,sample_size:practice.length,time_window:'کل',method:'پس از ورود blueprint رسمی محاسبه می‌شود',uncertainty:'INSUFFICIENT_DATA'},
+{name:'ERROR_RECURRENCE',value:null,sample_size:practice.length,time_window:'کل',method:'نیازمند نرمال‌سازی خطاها',uncertainty:'INSUFFICIENT_DATA'},
+{name:'CONFIDENCE_CALIBRATION',value:null,sample_size:0,time_window:'کل',method:'confidence capture هنوز فعال نیست',uncertainty:'INSUFFICIENT_DATA'}]; }
+export function streak(state:StudyState,today=new Date()){const days=new Set([...state.events.map(e=>e.date),...state.reviews.map(r=>r.date)]);const d=new Date(today);if(!days.has(d.toISOString().slice(0,10)))d.setDate(d.getDate()-1);let n=0;while(days.has(d.toISOString().slice(0,10))){n++;d.setDate(d.getDate()-1);}return n;}

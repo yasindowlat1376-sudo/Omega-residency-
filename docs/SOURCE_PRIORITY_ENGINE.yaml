@@ -1,0 +1,26 @@
+version: "1.0.0"
+priority:
+  - rank: 1
+    class: PRIMARY_AUTHORITY
+    examples: [sanjeshp.ir, dme.behdasht.gov.ir, formal council circulars]
+  - rank: 2
+    class: INSTITUTIONAL_MIRROR
+    examples: [medical university faculty pages reproducing official source links]
+  - rank: 3
+    class: PRIMARY_EXAM_ARTIFACT
+    examples: [official question booklet, official answer key, official result/selection booklet]
+  - rank: 4
+    class: PEER_REVIEWED_MEDICAL
+    examples: [guidelines, peer-reviewed papers]
+  - rank: 5
+    class: SECONDARY_DISCOVERY
+    examples: [Telegram, educational sites, coaching summaries]
+  - rank: 6
+    class: COMMERCIAL
+    examples: [paid courses, marketing pages]
+rules:
+  - "Never resolve a contradiction in favor of a lower-priority source."
+  - "Current-year rules require current-year verification."
+  - "1406 claims remain UNKNOWN until primary provenance is available."
+  - "Telegram is a signal source, not the system of record."
+  - "Historical 1405 rules are not silently projected onto 1406."
