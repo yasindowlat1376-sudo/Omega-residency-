@@ -14,6 +14,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Report npm dependency advisories
+        run: |
+          npm audit --json > npm-audit.json || true
+          node scripts/dependency-audit-summary.mjs npm-audit.json
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
