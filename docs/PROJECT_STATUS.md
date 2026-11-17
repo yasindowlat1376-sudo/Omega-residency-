@@ -26,6 +26,8 @@ This verifies the source and production web bundle for that commit. It does not 
 
 ## Verification and release gates
 
+A non-blocking `npm audit --json` summary step is being added to CI so advisory identity, affected dependency paths, severity and fix availability are visible in the run log. Dependabot weekly updates are being enabled for npm dependencies and GitHub Actions.
+
 | Area | Status | Evidence / limitation |
 |---|---|---|
 | Lint / typecheck / core tests | PASS | GitHub Actions run 44161766908 |
