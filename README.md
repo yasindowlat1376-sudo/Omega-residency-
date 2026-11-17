@@ -1,6 +1,6 @@
 # Ω-RESIDENCY
 
-Source-aware learning and exam-intelligence foundation for the Iranian Medical Residency Entrance Exam.
+**Ω-PATH-STUDY** — mobile-first pathology residency learning and workflow application, with the original Ω-RESIDENCY exam-intelligence modules retained.
 
 ## Current baseline
 
@@ -37,7 +37,7 @@ npm run build
 npm run dev
 ```
 
-## AI configuration
+## Run as an installable app\n\nThe GitHub Pages workflow builds and deploys the app from `main`. The app supports browser installation (Add to Home Screen) and caches the application shell for offline use after the first successful visit.\n\n## AI configuration
 
 Live providers use a server-side proxy contract:
 
@@ -51,7 +51,7 @@ Never ship vendor API credentials inside the client bundle.
 
 ## Pathology residency package — Ω-PATH-STUDY
 
-A pathology-specific workspace is being integrated as a domain package, reusing the canonical residency state and persistence. Current feature branch: shift checklist, gross description builder, microscopy reasoning scaffold, de-identified educational case log and on-call documentation. See `docs/pathology/` for the module index, architecture, curriculum, reference policy and safety boundaries. The feature branch is not yet CI-verified or merged.
+The application includes a pathology workspace, normal-histology learning atlas, four-year developmental curriculum, organ-specific grossing reference cards, active-recall questions, shift checklist, gross description builder, microscopy reasoning scaffold, de-identified educational case log and source library. Learning progress and cases share the canonical local state. The app is packaged as an installable/offline-capable PWA and deployed to GitHub Pages by a CI-gated workflow. The IUMS-specific official rotation calendar and local SOPs are not represented as verified until source documents are supplied.
 
 ## Release status
 
