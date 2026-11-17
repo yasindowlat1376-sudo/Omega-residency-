@@ -20,7 +20,7 @@
 - GitHub Actions verification run: `44161766908` — **success**.
 - Verified steps: `npm ci`, lint, strict TypeScript typecheck, core tests, static security scan and Vite production build.
 
-This verifies the source and production web bundle for that commit. It does not establish clinical validation, official curriculum approval, native Android readiness or successful Pages publication.
+This verifies the source and production web bundle for that commit. The latest deployment workflow build job passes, but the deploy job fails because Pages has not yet been enabled in repository settings. This does not establish clinical validation, official curriculum approval or native Android readiness.
 
 ## Pathology learning coverage on main
 
@@ -43,7 +43,7 @@ A non-blocking `npm audit --json` summary step is now part of CI so advisory ide
 | Production build | PASS | Vite build completed in run 44161766908 |
 | Static security scan | PASS | This checks configured repository patterns; it does not clear npm advisories |
 | npm dependency audit | OPEN | Five high-severity findings remain; see issue #7. `picomatch` GHSA-fc5q-39xc-vjpf has no patched release stated in the advisory as of 2026-11-17. `source-map-js` requires ≥1.2.2; Vite 6.4.3 requires a patched 6.4.4+ release. Do not force major upgrades |
-| GitHub Pages | CONFIGURED / DEPLOYMENT UNVERIFIED | Workflow exists; live URL and deployment environment not independently confirmed |
+| GitHub Pages | BLOCKED ON ONE-TIME ADMIN SETTING | Build job passes, but GitHub Pages site creation returns 404 and the integration cannot create it. Repository owner/admin must set Settings → Pages → Source = GitHub Actions, then rerun deploy workflow |
 | Android install | PWA design only | No native APK/AAB, signing or Play release |
 | Browser persistence | IMPLEMENTED / E2E PARTIAL | Local browser storage; cross-device sync and full recovery tests unverified |
 | Clinical validation | NOT COMPLETED | Educational content requires faculty review and local SOP alignment |
