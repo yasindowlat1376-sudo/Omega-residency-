@@ -1,7 +1,7 @@
 # Ω-PATH-STUDY — Implementation status
 Updated: 2026-11-17
 
-## Intended in this feature branch
+## Added to this feature branch (not yet CI-verified)
 Pathology workspace navigation; shared-state pathology subobject; shift checklist; generic gross description builder; microscopy observation scaffold; differential and ancillary fields; epistemic-state selector; de-identified educational case log and JSON export; architecture/on-call/grossing/microscopy/curriculum/privacy docs.
 
 ## Not implemented / not verified
