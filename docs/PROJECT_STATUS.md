@@ -49,3 +49,13 @@ Native release: BLOCKED_BY_NATIVE_CONFIG (no Android project, signing configurat
 - Adequate psychometric sample size
 
 A successful CI build verifies the web production bundle only. It does not establish production readiness, official question validity, native Android readiness, or live AI/RAG connectivity.
+
+
+## Ω-PATH-STUDY integration — 2026-11-17
+
+- Feature branch: `feature/omega-path-study-mvp`
+- Pull request: #3 (open; not merged)
+- Runtime slice added: shift checklist, gross/microscopy scaffolds, educational case log, shared StudyState persistence.
+- Documentation added under `docs/pathology/`.
+- CI evidence for this branch is currently unavailable; do not claim verification until Actions reports pass.
+- Clinical and institutional validation remains separate from software build verification.
