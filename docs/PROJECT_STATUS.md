@@ -8,7 +8,10 @@
 
 - PR #5 (General Pathology expansion) merged; verification run `44161766908` passed.
 - PR #6 (dependency audit visibility + Dependabot) merged; verification run `44162070672` passed.
-- Dependency remediation is tracked in [issue #7](https://github.com/yasindowlat1376-sudo/Omega-residency-/issues/7); five high-severity npm advisories remain OPEN.
+- Dependabot action updates merged: PRs #8, #10, #11, #12 and #13; their CI runs passed.
+- Production dependency update PR #14 merged; CI run `44162494338` passed.
+- Major Vite 8 / TypeScript 7 proposal was not merged because the test pipeline exposed compatibility and lockfile issues; it was closed rather than bypassing CI.
+- Dependency remediation is tracked in [issue #7](https://github.com/yasindowlat1376-sudo/Omega-residency-/issues/7); high-severity npm advisories remain OPEN.
 
 ## Latest verified delivery
 
@@ -32,14 +35,14 @@ This verifies the source and production web bundle for that commit. It does not 
 
 ## Verification and release gates
 
-A non-blocking `npm audit --json` summary step is being added to CI so advisory identity, affected dependency paths, severity and fix availability are visible in the run log. Dependabot weekly updates are being enabled for npm dependencies and GitHub Actions.
+A non-blocking `npm audit --json` summary step is now part of CI so advisory identity, affected dependency paths, severity and fix availability are visible in the run log. Dependabot weekly updates are enabled for npm dependencies and GitHub Actions, restricted to semver minor/patch updates to avoid unreviewed major upgrades.
 
 | Area | Status | Evidence / limitation |
 |---|---|---|
 | Lint / typecheck / core tests | PASS | GitHub Actions run 44161766908 |
 | Production build | PASS | Vite build completed in run 44161766908 |
 | Static security scan | PASS | This checks configured repository patterns; it does not clear npm advisories |
-| npm dependency audit | OPEN | `npm ci` reported 5 high-severity vulnerabilities; exact advisory paths and remediation remain to be reviewed |
+| npm dependency audit | OPEN | Five high-severity findings remain; see issue #7. `picomatch` GHSA-fc5q-39xc-vjpf has no patched release stated in the advisory as of 2026-11-17. `source-map-js` requires ≥1.2.2; Vite 6.4.3 requires a patched 6.4.4+ release. Do not force major upgrades |
 | GitHub Pages | CONFIGURED / DEPLOYMENT UNVERIFIED | Workflow exists; live URL and deployment environment not independently confirmed |
 | Android install | PWA design only | No native APK/AAB, signing or Play release |
 | Browser persistence | IMPLEMENTED / E2E PARTIAL | Local browser storage; cross-device sync and full recovery tests unverified |
@@ -59,7 +62,7 @@ A non-blocking `npm audit --json` summary step is being added to CI so advisory 
 
 ## Remaining completion roadmap
 
-1. Resolve the five high-severity npm advisories tracked in issue #7; update only compatible safe versions and rerun CI.
+1. Resolve the high-severity npm advisories tracked in issue #7; apply patched versions when available, use narrowly scoped overrides only when justified, and rerun CI.
 2. Verify GitHub Pages deployment and installability on a real Android device.
 3. Obtain official IUMS curriculum, rotation schedule, assessment and promotion documents; preserve source/date/version.
 4. Expand system-based pathology, cytopathology, hematopathology, ancillary-test stewardship and image-based slide exercises using licensed sources.
