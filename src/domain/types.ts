@@ -1,3 +1,4 @@
+import type { PathologyState } from '../pathology/types';
 import type { Card, Difficulty, Question, Specialty } from '../content/synthetic';
 
 export type RecordMeta = { legacy_id?: string|number; migration_version?: string; migrated_at?: string; source_origin?: string };
@@ -23,6 +24,7 @@ export type StudyState = {
   auditEvents:AuditEvent[];
   invalidRecords:Array<{record_type:string;record_id:string|number;error:string;detected_at:string;raw?:unknown}>;
   guidelineRecords:GuidelineRecord[];
+  pathology: PathologyState;
 };
 
 export type AppQuestion = Question;
