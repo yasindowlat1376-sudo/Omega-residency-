@@ -11,7 +11,7 @@ Primary learner: Pathology residents (initial content emphasis: PGY1 foundations
 - **Learning atlas:** 23 original learning units: 15 normal-histology lessons plus 8 General Pathology foundations.
 - **Active recall:** 31 active-recall questions with explanations and persistent progress (15 normal-histology + 16 General Pathology).
 - **Curriculum:** PGY1–PGY4 developmental competency map, explicitly distinguished from the official IUMS curriculum.
-- **Core concepts:** cell injury, inflammation, repair, hemodynamic disorders, neoplasia, immune injury, infection and molecular pathology. This is not represented as an official IUMS curriculum.
+- **Core concepts:** cell injury, inflammation, repair, hemodynamic disorders, neoplasia, immune injury, infection and molecular pathology.
 - **Grossing reference:** 10 organ-specific specimen orientation cards with explicit local-SOP safeguards.
 - **Shift workflow:** start-of-shift, specimen triage and handoff checklist.
 - **Gross Description Builder:** structured fields and copy-ready descriptive output.
