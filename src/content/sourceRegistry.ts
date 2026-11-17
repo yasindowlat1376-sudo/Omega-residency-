@@ -26,7 +26,7 @@ export const sourceRegistry:SourceRecord[]=[
 ];
 
 export const guidelineSeed:GuidelineRecord[]=[
-{id:'G-WHO-DIGESTIVE-2026',source:'WHO/IARC',version:'6th edition · Volume 1',publication_date:'2026-07-29',specialty:'Pathology',topic:'Digestive System Tumours',last_checked:'2026-11-17',next_check:'2027-01-17',status:'CHANGED'},
+{id:'G-WHO-DIGESTIVE-2026',source:'WHO/IARC',version:'6th edition · Volume 1',publication_date:'2026',specialty:'Pathology',topic:'Digestive System Tumours',last_checked:'2026-11-17',next_check:'2027-01-17',status:'CHANGED'},
 {id:'G-CAP-CANCER-PROTOCOLS-2026-09',source:'CAP',version:'September 2026 release',publication_date:'2026-09-16',specialty:'Pathology',topic:'Current Cancer Protocols',last_checked:'2026-11-17',next_check:'2026-12-17',status:'CHANGED'},
 {id:'G-ICCR-DATASETS',source:'ICCR',version:'Published datasets · check per tumour site',specialty:'Pathology',topic:'Structured cancer reporting',last_checked:'2026-11-17',next_check:'2027-02-17',status:'UNKNOWN'},
 {id:'G-RCPATH-TISSUE-PATHWAYS',source:'RCPath',version:'Current online collection · verify per pathway',specialty:'Pathology',topic:'Tissue pathways and cancer datasets',last_checked:'2026-11-17',next_check:'2027-02-17',status:'UNKNOWN'},
