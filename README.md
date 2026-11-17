@@ -59,3 +59,20 @@ npm run dev
 - CI workflow: `.github/workflows/ci.yml`
 - See `docs/pathology/` for the curriculum map, reference map, architecture and data governance.
 - See `docs/PROJECT_STATUS.md` for known limitations and release gates.
+
+
+## One-time GitHub Pages activation
+
+The deployment workflow is ready, but the repository Pages site has not yet been created. The connected GitHub integration cannot change this repository setting.
+
+A repository owner/admin must do this once:
+
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Save.
+
+After that, the **Deploy Ω-RESIDENCY web app** workflow can publish the site. The expected project URL is:
+
+`https://yasindowlat1376-sudo.github.io/Omega-residency-/`
+
+The URL is not live/verified yet. After enabling Pages, rerun the latest deployment workflow from **Actions → Deploy Ω-RESIDENCY web app → Re-run jobs**, or ask me to rerun it.
