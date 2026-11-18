@@ -21,7 +21,7 @@ A release is ready for public educational use only when the software checks, dep
 
 | Gate | Current state | Evidence required to close |
 |---|---|---|
-| Lint, strict typecheck, core tests, static scan, production build | PASS on PR #23 | Run 44231169603 passed all steps; post-merge main CI run 44231253838 must also complete successfully |
+| Lint, strict typecheck, core tests, static scan, production build | PASS | PR run 44231169603 and latest main run 44231346200 both passed all steps |
 | Dependency advisories | OPEN | Fresh `npm audit --json` from the exact lockfile; document each remaining high/critical finding, dependency path, runtime exposure and mitigation |
 | Canvas persistence | MERGED to main in PR #23 | Round-trip, scale-clamping and malformed-storage recovery tests passed in CI; manual browser reload test remains outstanding |
 | Browser E2E | OPEN | Test navigation, canvas drag/pan/zoom, persistence, import/export and responsive layouts |
@@ -72,4 +72,4 @@ Record the commit SHA, workflow run URL, audit JSON summary and device-test date
 
 **Current classification: RELEASE CANDIDATE — NOT FULLY RELEASE-CLOSED.**
 
-PR #23 is merged to main. Its complete PR verification workflow passed. The post-merge main CI and Pages deployment were triggered and must be checked for final success. The open security review, physical-device verification, browser E2E coverage and faculty/curriculum validation remain explicit gates. Do not label the project clinically validated or fully production-ready until those gates are closed.
+PR #23 is merged to main. PR verification and latest main-branch CI passed. The latest GitHub Pages build and deployment also completed successfully. The open security review, physical-device verification, browser E2E coverage and faculty/curriculum validation remain explicit gates. Do not label the project clinically validated or fully production-ready until those gates are closed.
