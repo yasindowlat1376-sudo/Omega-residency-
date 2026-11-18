@@ -59,7 +59,7 @@ test('grossing preserves receipt wording and separately labelled containers in o
   await page.getByRole('button', { name: 'ماکروسکوپی', exact: true }).click();
 
   await page.getByLabel('Receipt phrase / عبارت دریافت (عین عبارت مورد استفاده)').fill('Received in formalin');
-  await page.getByLabel('Procedure').fill('Total hysterectomy');
+  await page.getByRole('textbox', { name: 'Procedure' }).fill('Total hysterectomy');
   await page.getByRole('button', { name: 'افزودن ظرف' }).click();
   await page.getByLabel('Label — عین برچسب').nth(0).fill('Uterus and cervix');
   await page.getByLabel('Specimen part / procedure').nth(0).fill('Uterus/cervix');
