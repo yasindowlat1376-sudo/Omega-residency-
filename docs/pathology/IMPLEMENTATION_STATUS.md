@@ -9,19 +9,24 @@ Updated: 2026-11-18
 
 ## Grossing engine
 
-### Implemented
-- Generic single-record structured gross-description builder.
-- Basic fields for specimen type, organ, procedure, site/laterality, orientation, dimensions, weight, external surface, lesion, margins, sampling and blocks.
-- Copy-ready text output and local educational case draft/log.
+### Implemented in the current application
+- Generic structured gross-description builder and copy-ready preview.
+- Receipt phrase and fixative fields.
+- Multiple independently entered containers, each with a verbatim label, specimen part, received-in field and description.
+- Container count and ordered container details in generated gross narrative.
+- Generic fields for procedure/specimen, organ/site/laterality, orientation, dimensions, weight, external surface, lesion, margins, sampling and block identifiers.
+- Comprehensive/concise selector (output behavior still requires validation; do not assume concise mode suppresses or preserves all required fields).
+- Local educational case draft/log.
 
-### Specified; implementation pending
-- Stable receipt → procedure/specimen identity → macroscopic examination → sampling/block map → narrative sequence.
-- Multi-container intake with verbatim labels and container/part concordance.
-- Procedure-aware form profiles (biopsy, polypectomy, skin excision, lymph node, prostate, hysterectomy, colectomy/gastrectomy, gallbladder, liver biopsy, breast excision).
-- Comprehensive default and concise/local style profiles.
-- Verified institution-specific abbreviation dictionary; preserve unverified shorthand verbatim.
-- Block-level provenance linking container, specimen part, anatomical location and actual sampling reason.
-- Stop conditions for identity/label mismatch, orientation ambiguity, special tissue allocation and unavailable SOP.
+### Specified or partially represented; implementation still required
+- Procedure-aware dynamic forms. The current procedure-profile selector is a value selector; it does not yet activate validated procedure-specific required/conditional fields.
+- Profile-specific narrative ordering and terminology for biopsy, polypectomy, skin excision, lymph node, prostate, hysterectomy, colectomy/gastrectomy, gallbladder, liver biopsy and breast excision.
+- Verified institution-specific abbreviation dictionary; unverified shorthand is preserved verbatim in the receipt phrase, but no governed dictionary exists.
+- Structured container-to-specimen-part concordance and explicit mismatch/stop workflow.
+- Block-level provenance linking each actually submitted block to its container, specimen part, anatomical location and sampling reason.
+- Field-level distinctions among not present, not identified, not assessed, not applicable and unknown.
+- Comprehensive/concise output rules validated against local practice.
+- Current local SOP/version metadata and faculty-approved protocol links.
 
 ### Explicit non-goals / safeguards
 - No autonomous cassette prescription or claim that a suggested block was actually taken.
