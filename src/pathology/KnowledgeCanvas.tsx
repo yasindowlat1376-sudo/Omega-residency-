@@ -1,4 +1,5 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { readCanvasState, writeCanvasState } from './canvasPersistence';
 import type { PointerEvent } from 'react';
 import { BookOpen, ChevronLeft, ChevronRight, CircleHelp, ExternalLink, Focus, GitBranch, Image, Minus, Plus, Presentation, Search, ShieldCheck, X } from 'lucide-react';
 
@@ -24,7 +25,13 @@ const edges:Edge[]=[
 const palette:Record<Kind,{fill:string;stroke:string;label:string}>={system:{fill:'#182d5b',stroke:'#182d5b',label:'System'},organ:{fill:'#e8edff',stroke:'#8798d6',label:'Organ'},pattern:{fill:'#e7f4f2',stroke:'#75aaa0',label:'Pattern'},differential:{fill:'#fff2df',stroke:'#d6a45b',label:'Differential'},test:{fill:'#f1eaff',stroke:'#a28acb',label:'Ancillary test'},source:{fill:'#eaf2fa',stroke:'#7e9dbb',label:'Report'},image:{fill:'#fff0f4',stroke:'#c58b9f',label:'Visual'}};
 const steps=['root','pattern','ddx','ancillary','report','visual'];
 export default function KnowledgeCanvas(){
- const [selected,setSelected]=useState('root');const [scale,setScale]=useState(.72);const [offset,setOffset]=useState({x:-150,y:-50});const [positions,setPositions]=useState<Record<string,{x:number;y:number}>>({});const [query,setQuery]=useState('');const [present,setPresent]=useState(false);const [step,setStep]=useState(0);const [showLabels,setShowLabels]=useState(true);
+ const [initialCanvasState]=useState(()=>{try{return readCanvasState(typeof window!=='undefined'?window.localStorage:undefined)}catch{return {}}});
+ const [selected,setSelected]=useState(()=>nodes.some(n=>n.id===initialCanvasState.selected)?initialCanvasState.selected!:'root');
+ const [scale,setScale]=useState(initialCanvasState.scale??.72);
+ const [offset,setOffset]=useState(initialCanvasState.offset??{x:-150,y:-50});
+ const [positions,setPositions]=useState<Record<string,{x:number;y:number}>>(initialCanvasState.positions??{});
+ const [query,setQuery]=useState('');const [present,setPresent]=useState(false);const [step,setStep]=useState(0);const [showLabels,setShowLabels]=useState(true);
+ useEffect(()=>{try{writeCanvasState(typeof window!=='undefined'?window.localStorage:undefined,{version:1,selected,scale,offset,positions})}catch{/* Storage may be unavailable in private or restricted browsing modes. */}},[selected,scale,offset,positions]);
  const svg=useRef<SVGSVGElement>(null);const drag=useRef<{id:string|null;startX:number;startY:number;originX:number;originY:number;offsetX:number;offsetY:number}|null>(null);
  const visible=useMemo(()=>nodes.filter(n=>!query||[n.title,n.subtitle,n.facts.join(' ')].join(' ').toLowerCase().includes(query.toLowerCase())),[query]);
  const active=nodes.find(n=>n.id===selected)??nodes[0];
