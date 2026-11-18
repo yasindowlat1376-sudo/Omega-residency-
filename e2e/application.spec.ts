@@ -1,17 +1,21 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
-test('application hydrates and exposes the pathology learning workspace', async ({ page }) => {
+async function openCanvas(page: Page, isMobile: boolean) {
+  await page.getByTestId(isMobile ? 'mobile-nav-canvas' : 'nav-canvas').click();
+  await expect(page.getByTestId('knowledge-canvas')).toBeVisible();
+}
+
+test('application hydrates and exposes the pathology learning workspace', async ({ page, isMobile }) => {
   await page.goto('/');
   await expect(page.getByTestId('dashboard-page')).toBeVisible();
   await expect(page.getByText('Ω-PATH-STUDY').first()).toBeVisible();
-  await expect(page.getByTestId('mobile-nav-pathology')).toBeVisible();
+  await expect(page.getByTestId(isMobile ? 'mobile-nav-pathology' : 'nav-pathology')).toBeVisible();
 });
 
-test('knowledge canvas restores the selected concept and zoom after reload', async ({ page }) => {
+test('knowledge canvas restores the selected concept and zoom after reload', async ({ page, isMobile }) => {
   await page.goto('/');
   await expect(page.getByTestId('dashboard-page')).toBeVisible();
-  await page.getByTestId('mobile-nav-canvas').click();
-  await expect(page.getByTestId('knowledge-canvas')).toBeVisible();
+  await openCanvas(page, isMobile);
   await expect(page.getByRole('heading', { name: 'GI Pathology' })).toBeVisible();
 
   await page.getByRole('button', { name: 'Stomach', exact: true }).click();
@@ -27,7 +31,7 @@ test('knowledge canvas restores the selected concept and zoom after reload', asy
   expect(beforeReload.scale).toBeGreaterThan(0.72);
 
   await page.reload();
-  await page.getByTestId('mobile-nav-canvas').click();
+  await openCanvas(page, isMobile);
   await expect(page.getByRole('heading', { name: 'Stomach', exact: true })).toBeVisible();
   const afterReload = await page.evaluate(() => JSON.parse(
     localStorage.getItem('omega-path-study:knowledge-canvas:v1') ?? '{}',
@@ -40,8 +44,7 @@ test('mobile layout does not introduce horizontal page overflow', async ({ page,
   test.skip(!isMobile, 'Mobile viewport regression');
   await page.goto('/');
   await expect(page.getByTestId('dashboard-page')).toBeVisible();
-  await page.getByTestId('mobile-nav-canvas').click();
-  await expect(page.getByTestId('knowledge-canvas')).toBeVisible();
+  await openCanvas(page, isMobile);
   const dimensions = await page.evaluate(() => ({
     viewport: document.documentElement.clientWidth,
     document: document.documentElement.scrollWidth,
