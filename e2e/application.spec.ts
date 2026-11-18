@@ -51,3 +51,34 @@ test('mobile layout does not introduce horizontal page overflow', async ({ page,
   }));
   expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport + 1);
 });
+
+test('grossing preserves receipt wording and separately labelled containers in output', async ({ page, isMobile }) => {
+  await page.goto('/');
+  await expect(page.getByTestId('launcher-home')).toBeVisible();
+  await page.getByTestId(isMobile ? 'mobile-nav-pathology' : 'nav-pathology').click();
+  await page.getByRole('button', { name: 'ماکروسکوپی', exact: true }).click();
+
+  await page.getByLabel('Receipt phrase / عبارت دریافت (عین عبارت مورد استفاده)').fill('Received in formalin');
+  await page.getByRole('textbox', { name: 'Procedure' }).fill('Total hysterectomy');
+  await page.getByRole('button', { name: 'افزودن ظرف' }).click();
+  await page.getByLabel('Label — عین برچسب').nth(0).fill('Uterus and cervix');
+  await page.getByLabel('Specimen part / procedure').nth(0).fill('Uterus/cervix');
+  await page.getByLabel('توصیف محتوای ظرف').nth(0).fill('Uterus with cervix');
+  await page.getByRole('button', { name: 'افزودن ظرف' }).click();
+  await page.getByLabel('Label — عین برچسب').nth(1).fill('Bilateral adnexa');
+  await page.getByLabel('Specimen part / procedure').nth(1).fill('Bilateral tubes and ovaries');
+  await page.getByRole('button', { name: 'افزودن بلوک' }).click();
+  await page.getByLabel('Cassette ID').fill('A1');
+  await page.getByLabel('Container source').selectOption({ index: 1 });
+  await page.getByLabel('Exact anatomical site / component').fill('Endometrial polyp');
+  await page.getByLabel('Number of tissue pieces').fill('2');
+  await page.getByLabel('Purpose / target (actual)').fill('Lesion and interface');
+  await page.getByRole('button', { name: 'حذف ظرف' }).nth(0).click();
+  await expect(page.getByLabel('Label — عین برچسب')).toHaveCount(2);
+
+  const preview = page.locator('pre').filter({ hasText: 'Received in formalin' });
+  await expect(preview).toContainText('Number of containers: 2');
+  await expect(preview).toContainText('label (verbatim): Uterus and cervix');
+  await expect(preview).toContainText('label (verbatim): Bilateral adnexa');
+  await expect(preview).toContainText('Procedure / specimen: Total hysterectomy');
+});

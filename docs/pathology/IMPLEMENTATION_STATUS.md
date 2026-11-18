@@ -1,10 +1,50 @@
 # Ω-PATH-STUDY — Implementation status
-Updated: 2026-11-17
 
-## Added to this feature branch (not yet CI-verified)
-Pathology workspace navigation; shared-state pathology subobject; shift checklist; generic gross description builder; microscopy observation scaffold; differential and ancillary fields; epistemic-state selector; de-identified educational case log and JSON export; architecture/on-call/grossing/microscopy/curriculum/privacy docs.
+Updated: 2026-11-18
 
-## Not implemented / not verified
-Organ-specific grossing and block-selection protocols; complete specimen-to-diagnosis and LIS integration; image viewer/WSI/image analysis; AI diagnostic interpretation; official IUMS rotation calendar and SOP ingestion; CAP/ICCR synoptic report generation; competency sign-off and portfolio analytics; encryption/authentication/secure retention/institution-approved hosting; end-to-end browser tests.
+## Verified engineering baseline
+- Desktop and mobile Chromium Playwright smoke suite merged in PR #26.
+- CI checks include lint, strict typecheck, core tests, static security scan, production build and browser E2E.
+- Knowledge Canvas persistence is implemented and covered by core/browser regression tests.
+
+## Grossing engine
+
+### Implemented in the current application
+- Generic structured gross-description builder and copy-ready preview.
+- Receipt phrase and fixative fields.
+- Multiple independently entered containers, each with a verbatim label, specimen part, received-in field and description.
+- Container count and ordered container details in generated gross narrative.
+- Structured cassette map with cassette ID, source container, exact site/component, number of pieces, sectioning plane and actual sampling purpose; generated output retains container provenance.
+- Generic fields for procedure/specimen, organ/site/laterality, orientation, dimensions, weight, external surface, lesion, margins, sampling and block identifiers.
+- Comprehensive/concise selector (output behavior still requires validation; do not assume concise mode suppresses or preserves all required fields).
+- Local educational case draft/log.
+
+### Specified or partially represented; implementation still required
+- Procedure-aware dynamic forms. The current procedure-profile selector is a value selector; it does not yet activate validated procedure-specific required/conditional fields.
+- Profile-specific narrative ordering and terminology for biopsy, polypectomy, skin excision, lymph node, prostate, hysterectomy, colectomy/gastrectomy, gallbladder, liver biopsy and breast excision.
+- Verified institution-specific abbreviation dictionary; unverified shorthand is preserved verbatim in the receipt phrase, but no governed dictionary exists.
+- Structured container-to-specimen-part concordance and explicit mismatch/stop workflow.
+- Stronger cassette-to-specimen-part validation and prevention of deleting/losing source-container links after blocks have been assigned.
+- Field-level distinctions among not present, not identified, not assessed, not applicable and unknown.
+- Comprehensive/concise output rules validated against local practice.
+- Current local SOP/version metadata and faculty-approved protocol links.
+
+### Explicit non-goals / safeguards
+- No autonomous cassette prescription or claim that a suggested block was actually taken.
+- No inferred normal/negative finding from a blank field.
+- No diagnostic interpretation or attending preference in the gross-observation layer.
+- No substitution for local SOP, LIS, responsible pathologist or institutional sign-out.
+
+## Other not implemented / not verified
+- Organ-specific sampling protocols verified against current local SOP.
+- Complete specimen-to-diagnosis workflow and LIS integration.
+- Image viewer/WSI/image analysis.
+- AI diagnostic interpretation.
+- Official IUMS rotation calendar and SOP ingestion.
+- CAP/ICCR synoptic report generation (versioned datasets and copyright controls required).
+- Competency sign-off and portfolio analytics.
+- Encryption/authentication/secure retention/institution-approved hosting.
+- Physical Android installation/offline verification.
+- Faculty review of educational and workflow content.
 
 Source must pass branch CI and review before it is called verified, merged, deployed or clinically validated.

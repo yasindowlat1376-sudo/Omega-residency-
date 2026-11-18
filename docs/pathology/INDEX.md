@@ -19,4 +19,4 @@ Architecture baseline: 1.1.0. Parent: Ω-META → Ω-RESIDENCY. Execution: Ω-CI
 
 Every module must identify dependencies, owner, input/output contracts, epistemic state, lifecycle state, privacy class, tests and verification evidence. Each reusable instruction chunk should remain independently executable and under 1,000 words.
 
-Current code implements only the first operational slice: shift checklist, gross/microscopy text scaffolds, case log and shared-state persistence. Remaining modules are staged implementation work, not completed runtime features.
+Current code implements only the first operational slice: shift checklist, generic gross/microscopy text scaffolds, case log and shared-state persistence. The detailed procedure-aware grossing specification is documented in GROSSING_ENGINE.md; its multi-container and procedure-profile capabilities remain staged implementation work, not completed runtime features.
