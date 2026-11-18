@@ -123,4 +123,4 @@ Stop drafting or sampling recommendations and request human review when:
 
 ## Current implementation state
 
-The existing application has a generic single-record gross text builder. It does not yet implement the multi-container data model, procedure-aware forms, verified abbreviation dictionary or protocol-governed sampling map. Those are planned requirements, not existing capabilities.
+The current application already supports receipt/fixative fields, multiple independently entered containers with verbatim labels, specimen-part and description fields, and ordered container details in the generated narrative. It also has a generic procedure-profile selector and comprehensive/concise selector. However, profile selection does not yet activate validated procedure-specific forms; there is no governed abbreviation dictionary, structured concordance/stop workflow, block-level provenance, or protocol-governed sampling map. Treat only the container intake and generic narrative fields as implemented; the remaining items are planned requirements.
