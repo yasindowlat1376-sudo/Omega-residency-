@@ -8,6 +8,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "node scripts/lint-contract.mjs",
     "test": "node scripts/test-core.mjs",
+    "test:e2e": "playwright test",
     "security:scan": "node scripts/security-scan.mjs",
     "build": "vite build",
     "preview": "vite preview"
