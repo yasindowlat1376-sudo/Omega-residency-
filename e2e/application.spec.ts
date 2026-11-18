@@ -7,14 +7,14 @@ async function openCanvas(page: Page, isMobile: boolean) {
 
 test('application hydrates and exposes the pathology learning workspace', async ({ page, isMobile }) => {
   await page.goto('/');
-  await expect(page.getByTestId('dashboard-page')).toBeVisible();
+  await expect(page.getByTestId('launcher-home')).toBeVisible();
   await expect(page.getByText('Ω-PATH-STUDY').first()).toBeVisible();
   await expect(page.getByTestId(isMobile ? 'mobile-nav-pathology' : 'nav-pathology')).toBeVisible();
 });
 
 test('knowledge canvas restores the selected concept and zoom after reload', async ({ page, isMobile }) => {
   await page.goto('/');
-  await expect(page.getByTestId('dashboard-page')).toBeVisible();
+  await expect(page.getByTestId('launcher-home')).toBeVisible();
   await openCanvas(page, isMobile);
   await expect(page.getByRole('heading', { name: 'GI Pathology' })).toBeVisible();
 
@@ -43,7 +43,7 @@ test('knowledge canvas restores the selected concept and zoom after reload', asy
 test('mobile layout does not introduce horizontal page overflow', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'Mobile viewport regression');
   await page.goto('/');
-  await expect(page.getByTestId('dashboard-page')).toBeVisible();
+  await expect(page.getByTestId('launcher-home')).toBeVisible();
   await openCanvas(page, isMobile);
   const dimensions = await page.evaluate(() => ({
     viewport: document.documentElement.clientWidth,
