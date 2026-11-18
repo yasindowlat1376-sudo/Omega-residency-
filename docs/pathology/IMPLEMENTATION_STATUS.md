@@ -14,6 +14,7 @@ Updated: 2026-11-18
 - Receipt phrase and fixative fields.
 - Multiple independently entered containers, each with a verbatim label, specimen part, received-in field and description.
 - Container count and ordered container details in generated gross narrative.
+- Structured cassette map with cassette ID, source container, exact site/component, number of pieces, sectioning plane and actual sampling purpose; generated output retains container provenance.
 - Generic fields for procedure/specimen, organ/site/laterality, orientation, dimensions, weight, external surface, lesion, margins, sampling and block identifiers.
 - Comprehensive/concise selector (output behavior still requires validation; do not assume concise mode suppresses or preserves all required fields).
 - Local educational case draft/log.
@@ -23,7 +24,7 @@ Updated: 2026-11-18
 - Profile-specific narrative ordering and terminology for biopsy, polypectomy, skin excision, lymph node, prostate, hysterectomy, colectomy/gastrectomy, gallbladder, liver biopsy and breast excision.
 - Verified institution-specific abbreviation dictionary; unverified shorthand is preserved verbatim in the receipt phrase, but no governed dictionary exists.
 - Structured container-to-specimen-part concordance and explicit mismatch/stop workflow.
-- Block-level provenance linking each actually submitted block to its container, specimen part, anatomical location and sampling reason.
+- Stronger cassette-to-specimen-part validation and prevention of deleting/losing source-container links after blocks have been assigned.
 - Field-level distinctions among not present, not identified, not assessed, not applicable and unknown.
 - Comprehensive/concise output rules validated against local practice.
 - Current local SOP/version metadata and faculty-approved protocol links.
