@@ -3,11 +3,14 @@
 **Snapshot:** 2026-11-18  
 **Repository:** `yasindowlat1376-sudo/Omega-residency-`  
 **Default branch:** `main`  
-**Latest main commit:** `0867b66189758a288da6081f9814e217d91c8850`
+**Latest main commit:** `95bd335041ad843b9f89d6094c9b4ed342d3221e`
 
 ## Latest delivery
 
 - PR [#18](https://github.com/yasindowlat1376-sudo/Omega-residency-/pull/18) merged on 2026-11-17.
+- PR [#23](https://github.com/yasindowlat1376-sudo/Omega-residency-/pull/23) merged on 2026-11-18 (commit `95bd335041ad843b9f89d6094c9b4ed342d3221e`). It adds validated local persistence for Knowledge Canvas selection, viewport and node positions, regression tests for round-trip and malformed-storage recovery, and a release-readiness checklist.
+- PR #23 verification run [44231169603](https://github.com/yasindowlat1376-sudo/Omega-residency-/actions/runs/44231169603): **success** — install, advisory summary, lint, strict typecheck, tests, static security scan and production build all passed.
+- Post-merge main CI run [44231253838](https://github.com/yasindowlat1376-sudo/Omega-residency-/actions/runs/44231253838) and Pages deployment run [44231253758](https://github.com/yasindowlat1376-sudo/Omega-residency-/actions/runs/44231253758) were triggered; verify final conclusions before treating deployment as refreshed.
 - Added an interactive knowledge canvas, visual histology atlas integration, expanded evidence registry and modernization documentation.
 - Merge commit: `0867b66189758a288da6081f9814e217d91c8850`.
 - PR verification run [44169852520](https://github.com/yasindowlat1376-sudo/Omega-residency-/actions/runs/44169852520): **success** — install, dependency advisory summary, lint, strict typecheck, tests, static security scan and production build all passed.
@@ -23,7 +26,7 @@
 - Educational microscopy/reasoning scaffold with FACT / INFERENCE / HYPOTHESIS / UNKNOWN.
 - Educational case log and JSON export.
 - Visual Atlas with original labelled schematics (not diagnostic micrographs).
-- Knowledge Canvas MVP: draggable nodes, pan/zoom, searchable concepts, relationship edges, node detail/source panels and guided presentation path.
+- Knowledge Canvas: draggable nodes, pan/zoom, searchable concepts, relationship edges, node detail/source panels, guided presentation path and validated browser-local persistence for selected node, viewport and node layout.
 - Local browser persistence; cloud synchronization is not established.
 
 ## Verification and release gates
