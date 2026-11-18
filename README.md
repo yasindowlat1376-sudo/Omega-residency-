@@ -63,6 +63,7 @@ npm run dev
 - CI workflow: `.github/workflows/ci.yml`
 - Latest source status and release gates: [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)
 - Evidence policy and modernization plan: [docs/EVIDENCE_AND_MODERNIZATION.md](docs/EVIDENCE_AND_MODERNIZATION.md)
+- Release gates and verification checklist: [docs/RELEASE_READINESS.md](docs/RELEASE_READINESS.md)
 - Pathology architecture and learning map: `docs/pathology/`
 
 **Release rule:** a green CI run verifies software checks, not clinical validity, curriculum accreditation or readiness for independent clinical use.
