@@ -73,6 +73,8 @@ test('grossing preserves receipt wording and separately labelled containers in o
   await page.getByLabel('Exact anatomical site / component').fill('Endometrial polyp');
   await page.getByLabel('Number of tissue pieces').fill('2');
   await page.getByLabel('Purpose / target (actual)').fill('Lesion and interface');
+  await page.getByRole('button', { name: 'حذف ظرف' }).nth(0).click();
+  await expect(page.getByLabel('Label — عین برچسب')).toHaveCount(2);
 
   const preview = page.locator('pre').filter({ hasText: 'Received in formalin' });
   await expect(preview).toContainText('Number of containers: 2');
